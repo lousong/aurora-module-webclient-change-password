@@ -25,7 +25,7 @@ var
  */
 function CResetPasswordView()
 {
-	this.oDefaultAccount = App.defaultAccount();
+	this.oDefaultAccount = App.defaultAccount ? App.defaultAccount() : null;
 	this.showResetPasswordButton = ko.computed(function () {
 		return this.oDefaultAccount && !this.oDefaultAccount.allowMail();
 	}, this);
