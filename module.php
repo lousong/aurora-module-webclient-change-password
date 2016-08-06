@@ -2,7 +2,7 @@
 
 class ChangePasswordClientModule extends AApiModule
 {
-	public function GetAppData($oUser = null)
+	public function GetAppData()
 	{
 		return array(
 			'PasswordMinLength' => 0, // AppData.App.PasswordMinLength
