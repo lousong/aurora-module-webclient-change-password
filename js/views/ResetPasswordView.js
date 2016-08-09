@@ -14,8 +14,8 @@ var
 	
 	Popups = require('modules/CoreClient/js/Popups.js'),
 	ConfirmPopup = require('modules/CoreClient/js/popups/ConfirmPopup.js'),
-	ChangePasswordPopup = ModulesManager.run('ChangePasswordClient', 'getChangePasswordPopup'),
-	CreateAccountPopup = ModulesManager.run('MailClient', 'getCreateAccountPopup'),
+	ChangePasswordPopup = ModulesManager.run('ChangePasswordWebclient', 'getChangePasswordPopup'),
+	CreateAccountPopup = ModulesManager.run('MailWebclient', 'getCreateAccountPopup'),
 	
 	Settings = require('modules/%ModuleName%/js/Settings.js')
 ;
