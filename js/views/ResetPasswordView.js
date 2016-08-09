@@ -3,17 +3,17 @@
 var
 	ko = require('knockout'),
 	
-	TextUtils = require('modules/CoreClient/js/utils/Text.js'),
+	TextUtils = require('%PathToCoreWebclientModule%/js/utils/Text.js'),
 	
-	Ajax = require('modules/CoreClient/js/Ajax.js'),
-	App = require('modules/CoreClient/js/App.js'),
-	Api = require('modules/CoreClient/js/Api.js'),
-	Screens = require('modules/CoreClient/js/Screens.js'),
-	Routing = require('modules/CoreClient/js/Routing.js'),
-	ModulesManager = require('modules/CoreClient/js/ModulesManager.js'),
+	Ajax = require('%PathToCoreWebclientModule%/js/Ajax.js'),
+	App = require('%PathToCoreWebclientModule%/js/App.js'),
+	Api = require('%PathToCoreWebclientModule%/js/Api.js'),
+	Screens = require('%PathToCoreWebclientModule%/js/Screens.js'),
+	Routing = require('%PathToCoreWebclientModule%/js/Routing.js'),
+	ModulesManager = require('%PathToCoreWebclientModule%/js/ModulesManager.js'),
 	
-	Popups = require('modules/CoreClient/js/Popups.js'),
-	ConfirmPopup = require('modules/CoreClient/js/popups/ConfirmPopup.js'),
+	Popups = require('%PathToCoreWebclientModule%/js/Popups.js'),
+	ConfirmPopup = require('%PathToCoreWebclientModule%/js/popups/ConfirmPopup.js'),
 	ChangePasswordPopup = ModulesManager.run('ChangePasswordWebclient', 'getChangePasswordPopup'),
 	CreateAccountPopup = ModulesManager.run('MailWebclient', 'getCreateAccountPopup'),
 	
