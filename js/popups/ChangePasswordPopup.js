@@ -55,7 +55,7 @@ CChangePasswordPopup.prototype.change = function ()
 {
 	if (this.confirmPassword() !== this.newPassword())
 	{
-		Screens.showError(TextUtils.i18n('CORECLIENT/ERROR_PASSWORDS_DO_NOT_MATCH'));
+		Screens.showError(TextUtils.i18n('COREWEBCLIENT/ERROR_PASSWORDS_DO_NOT_MATCH'));
 	}
 	else if (Settings.PasswordMinLength > 0 && this.newPassword().length < Settings.PasswordMinLength) 
 	{ 

@@ -34,7 +34,7 @@ function CResetPasswordView()
 		{
 			if (this.oDefaultAccount.passwordSpecified())
 			{
-				return TextUtils.i18n('CORECLIENT/ACTION_RESET_PASSWORD');
+				return TextUtils.i18n('COREWEBCLIENT/ACTION_RESET_PASSWORD');
 			}
 			else
 			{
@@ -69,8 +69,8 @@ CResetPasswordView.prototype.resetPassword = function ()
 				TextUtils.i18n('%MODULENAME%/CONFIRM_SEND_RESET_INSTRUCTIONS', {'EMAIL': this.oDefaultAccount.email()}),
 				_.bind(this.onResetPasswordPopupAnswer, this),
 				this.oDefaultAccount.passwordSpecified() ? TextUtils.i18n('%MODULENAME%/HEADING_RESET_PASSWORD') : TextUtils.i18n('%MODULENAME%/HEADING_SET_PASSWORD'),
-				TextUtils.i18n('CORECLIENT/ACTION_SEND'),
-				TextUtils.i18n('CORECLIENT/ACTION_CANCEL')
+				TextUtils.i18n('COREWEBCLIENT/ACTION_SEND'),
+				TextUtils.i18n('COREWEBCLIENT/ACTION_CANCEL')
 			]);
 		}
 		else
@@ -93,7 +93,7 @@ CResetPasswordView.prototype.onResetPasswordPopupAnswer = function (bReset)
 {
 	if (bReset)
 	{
-		Screens.showLoading(TextUtils.i18n('CORECLIENT/INFO_SENDING'));
+		Screens.showLoading(TextUtils.i18n('COREWEBCLIENT/INFO_SENDING'));
 		Ajax.send('Mail', 'ResetPassword', {'UrlHash': Routing.currentHash()}, this.onResetPassword, this);
 	}
 };
