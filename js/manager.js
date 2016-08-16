@@ -11,7 +11,7 @@ module.exports = function (oAppData) {
 	
 	return {
 		isAvailable: function (iUserRole, bPublic) {
-			return !bPublic && iUserRole === Enums.UserRole.PowerUser;
+			return !bPublic && iUserRole === Enums.UserRole.NormalUser;
 		},
 		getChangePasswordPopup: function () {
 			return require('modules/%ModuleName%/js/popups/ChangePasswordPopup.js');
