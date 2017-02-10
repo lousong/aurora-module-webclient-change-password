@@ -74,8 +74,8 @@ CChangePasswordPopup.prototype.change = function ()
 CChangePasswordPopup.prototype.sendChangeRequest = function ()
 {
 	var oParameters = {
-		'CurrentPassword': this.currentPassword(), // CurrentIncomingMailPassword
-		'NewPassword': this.newPassword() // NewIncomingMailPassword
+		'CurrentPassword': this.currentPassword(),
+		'NewPassword': this.newPassword()
 	};
 
 	if (Settings.ResetPassHash)
