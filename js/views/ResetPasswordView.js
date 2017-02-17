@@ -6,7 +6,6 @@ var
 	TextUtils = require('%PathToCoreWebclientModule%/js/utils/Text.js'),
 	
 	Ajax = require('%PathToCoreWebclientModule%/js/Ajax.js'),
-	App = require('%PathToCoreWebclientModule%/js/App.js'),
 	Api = require('%PathToCoreWebclientModule%/js/Api.js'),
 	Screens = require('%PathToCoreWebclientModule%/js/Screens.js'),
 	Routing = require('%PathToCoreWebclientModule%/js/Routing.js'),
@@ -15,7 +14,6 @@ var
 	Popups = require('%PathToCoreWebclientModule%/js/Popups.js'),
 	ConfirmPopup = require('%PathToCoreWebclientModule%/js/popups/ConfirmPopup.js'),
 	ChangePasswordPopup = ModulesManager.run('ChangePasswordWebclient', 'getChangePasswordPopup'),
-	CreateAccountPopup = ModulesManager.run('MailWebclient', 'getCreateAccountPopup'),
 	
 	Settings = require('modules/%ModuleName%/js/Settings.js')
 ;
@@ -25,9 +23,9 @@ var
  */
 function CResetPasswordView()
 {
-	this.oDefaultAccount = App.defaultAccount ? App.defaultAccount() : null;
+	this.oDefaultAccount = null;
 	this.showResetPasswordButton = ko.computed(function () {
-		return this.oDefaultAccount && !this.oDefaultAccount.allowMail();
+		return this.oDefaultAccount;
 	}, this);
 	this.resetPasswordButtonText = ko.computed(function () {
 		if (this.oDefaultAccount)
@@ -50,14 +48,6 @@ function CResetPasswordView()
 }
 
 CResetPasswordView.prototype.ViewTemplate = '%ModuleName%_ResetPasswordView';
-
-CResetPasswordView.prototype.configureMail = function ()
-{
-	if (this.oDefaultAccount && !this.oDefaultAccount.allowMail() && CreateAccountPopup)
-	{
-		Popups.showPopup(CreateAccountPopup, [Enums.AccountCreationPopupType.ConnectToMail, this.oDefaultAccount.email()]);
-	}
-};
 
 CResetPasswordView.prototype.resetPassword = function ()
 {
