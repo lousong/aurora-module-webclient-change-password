@@ -1,6 +1,8 @@
 <?php
 
-class ChangePasswordWebclientModule extends AApiModule
+namespace Aurora\Modules;
+
+class ChangePasswordWebclientModule extends \AApiModule
 {
 	/***** public functions might be called with web API *****/
 	/**
