@@ -2,7 +2,7 @@
 
 namespace Aurora\Modules;
 
-class ChangePasswordWebclientModule extends \AApiModule
+class ChangePasswordWebclientModule extends \Aurora\System\AbstractModule
 {
 	/***** public functions might be called with web API *****/
 	/**
@@ -12,7 +12,7 @@ class ChangePasswordWebclientModule extends \AApiModule
 	 */
 	public function GetSettings()
 	{
-		\CApi::checkUserRoleIsAtLeast(\EUserRole::Anonymous);
+		\Aurora\System\Api::checkUserRoleIsAtLeast(\EUserRole::Anonymous);
 		
 		return array(
 			'PasswordMinLength' => 0, // AppData.App.PasswordMinLength
