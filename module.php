@@ -2,7 +2,7 @@
 
 namespace Aurora\Modules;
 
-class ChangePasswordWebclientModule extends \Aurora\System\AbstractModule
+class ChangePasswordWebclientModule extends \Aurora\System\Module\AbstractModule
 {
 	/***** public functions might be called with web API *****/
 	/**
