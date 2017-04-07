@@ -27,6 +27,7 @@ function CChangePasswordPopup()
 	this.newPassword = ko.observable('');
 	this.confirmPassword = ko.observable('');
 	
+	this.accountId = ko.observable('');
 	this.hasOldPassword = ko.observable(false);
 	this.oParams = null;
 }
@@ -47,6 +48,7 @@ CChangePasswordPopup.prototype.onShow = function (oParams)
 	this.newPassword('');
 	this.confirmPassword('');
 	
+	this.accountId(oParams.iAccountId);
 	this.hasOldPassword(oParams.bHasOldPassword);
 	this.oParams = oParams;
 };
@@ -74,6 +76,7 @@ CChangePasswordPopup.prototype.change = function ()
 CChangePasswordPopup.prototype.sendChangeRequest = function ()
 {
 	var oParameters = {
+		'AccountId': this.accountId(),
 		'CurrentPassword': this.currentPassword(),
 		'NewPassword': this.newPassword()
 	};
