@@ -42,7 +42,7 @@ CChangePasswordPopup.prototype.PopupTemplate = '%ModuleName%_ChangePasswordPopup
  * @param {boolean} oParams.bHasOldPassword
  * @param {Function} oParams.fAfterPasswordChanged
  */
-CChangePasswordPopup.prototype.onShow = function (oParams)
+CChangePasswordPopup.prototype.onOpen = function (oParams)
 {
 	this.currentPassword('');
 	this.newPassword('');
