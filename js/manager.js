@@ -5,12 +5,9 @@ module.exports = function (oAppData) {
 	
 	if (App.getUserRole() === Enums.UserRole.NormalUser)
 	{
-		var
-			Settings = require('modules/%ModuleName%/js/Settings.js'),
-			oSettings = oAppData['%ModuleName%'] || {}
-		;
+		var Settings = require('modules/%ModuleName%/js/Settings.js');
 
-		Settings.init(oSettings);
+		Settings.init(oAppData);
 
 		return {
 			getChangePasswordPopup: function () {

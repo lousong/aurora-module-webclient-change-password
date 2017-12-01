@@ -1,6 +1,8 @@
 'use strict';
 
 var
+	_ = require('underscore'),
+	
 	Types = require('%PathToCoreWebclientModule%/js/utils/Types.js'),
 	UrlUtils = require('%PathToCoreWebclientModule%/js/utils/Url.js')
 ;
@@ -10,11 +12,19 @@ module.exports = {
 	PasswordMustBeComplex: false,
 	ResetPassHash: UrlUtils.getRequestParam('reset-pass') || '',
 	
-	init: function (oAppDataSection) {
-		if (oAppDataSection)
+	/**
+	 * Initializes settings from AppData object sections.
+	 * 
+	 * @param {Object} oAppData Object contained modules settings.
+	 */
+	init: function (oAppData)
+	{
+		var oAppDataSection = oAppData['%ModuleName%'];
+		
+		if (!_.isEmpty(oAppDataSection))
 		{
-			this.PasswordMinLength = Types.pInt(oAppDataSection.PasswordMinLength);
-			this.PasswordMustBeComplex = !!oAppDataSection.PasswordMustBeComplex;
+			this.PasswordMinLength = Types.pNonNegativeInt(oAppDataSection.PasswordMinLength, this.PasswordMinLength);
+			this.PasswordMustBeComplex = Types.pBool(oAppDataSection.PasswordMustBeComplex, this.PasswordMustBeComplex);
 		}
 	}
 };
