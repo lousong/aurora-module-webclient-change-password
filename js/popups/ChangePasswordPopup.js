@@ -81,11 +81,6 @@ CChangePasswordPopup.prototype.sendChangeRequest = function ()
 		'NewPassword': this.newPassword()
 	};
 
-	if (Settings.ResetPassHash)
-	{
-		oParameters.Hash = Settings.ResetPassHash;
-	}
-	
 	Ajax.send(this.oParams.sModule, 'ChangePassword', oParameters, this.onUpdatePasswordResponse, this);
 };
 
@@ -116,8 +111,6 @@ CChangePasswordPopup.prototype.onUpdatePasswordResponse = function (oResponse, o
 		{
 			this.oParams.fAfterPasswordChanged();
 		}
-		
-		Settings.ResetPassHash = '';
 	}
 };
 

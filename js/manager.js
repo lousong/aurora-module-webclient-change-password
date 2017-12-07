@@ -10,11 +10,19 @@ module.exports = function (oAppData) {
 		Settings.init(oAppData);
 
 		return {
+			start: function (ModulesManager) {
+				ModulesManager.run(
+					'SettingsWebclient',
+					'registerSettingsTabSection', 
+					[
+						function () { return require('modules/%ModuleName%/js/views/ChangeSingleMailAccountPasswordView.js'); },
+						'common',
+						'common'
+					]
+				);
+			},
 			getChangePasswordPopup: function () {
 				return require('modules/%ModuleName%/js/popups/ChangePasswordPopup.js');
-			},
-			getResetPasswordView: function () {
-				return require('modules/%ModuleName%/js/views/ResetPasswordView.js');
 			}
 		};
 	}
