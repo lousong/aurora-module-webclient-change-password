@@ -55,15 +55,19 @@ CChangePasswordPopup.prototype.onOpen = function (oParams)
 
 CChangePasswordPopup.prototype.change = function ()
 {
-	if (this.confirmPassword() !== this.newPassword())
+	var
+		sNewPass = $.trim(this.newPassword()),
+		sConfirmPassword = $.trim(this.confirmPassword())
+	;
+	if (sConfirmPassword !== sNewPass)
 	{
 		Screens.showError(TextUtils.i18n('COREWEBCLIENT/ERROR_PASSWORDS_DO_NOT_MATCH'));
 	}
-	else if (Settings.PasswordMinLength > 0 && this.newPassword().length < Settings.PasswordMinLength) 
+	else if (Settings.PasswordMinLength > 0 && sNewPass.length < Settings.PasswordMinLength) 
 	{ 
 		Screens.showError(TextUtils.i18n('%MODULENAME%/ERROR_PASSWORD_TOO_SHORT').replace('%N%', Settings.PasswordMinLength));
 	}
-	else if (Settings.PasswordMustBeComplex && (!this.newPassword().match(/([0-9])/) || !this.newPassword().match(/([!,%,&,@,#,$,^,*,?,_,~])/)))
+	else if (Settings.PasswordMustBeComplex && (!sNewPass.match(/([0-9])/) || !sNewPass.match(/([!,%,&,@,#,$,^,*,?,_,~])/)))
 	{
 		Screens.showError(TextUtils.i18n('%MODULENAME%/ERROR_PASSWORD_TOO_SIMPLE'));
 	}
@@ -77,8 +81,8 @@ CChangePasswordPopup.prototype.sendChangeRequest = function ()
 {
 	var oParameters = {
 		'AccountId': this.accountId(),
-		'CurrentPassword': this.currentPassword(),
-		'NewPassword': this.newPassword()
+		'CurrentPassword': $.trim(this.currentPassword()),
+		'NewPassword': $.trim(this.newPassword())
 	};
 
 	Ajax.send(this.oParams.sModule, 'ChangePassword', oParameters, this.onUpdatePasswordResponse, this);
