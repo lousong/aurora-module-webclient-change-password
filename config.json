@@ -2,5 +2,13 @@
     "Disabled": [
 		false,
 		"bool"
+	],
+    "PasswordMinLength": [
+		0,
+		"int"
+	],
+    "PasswordMustBeComplex": [
+		false,
+		"bool"
 	]
 }

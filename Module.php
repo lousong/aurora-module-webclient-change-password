@@ -27,8 +27,8 @@ class Module extends \Aurora\System\Module\AbstractModule
 		\Aurora\System\Api::checkUserRoleIsAtLeast(\Aurora\System\Enums\UserRole::Anonymous);
 		
 		return array(
-			'PasswordMinLength' => 0, // AppData.App.PasswordMinLength
-			'PasswordMustBeComplex' => false // AppData.App.PasswordMustBeComplex
+			'PasswordMinLength' => $this->getConfig('PasswordMinLength', 0),
+			'PasswordMustBeComplex' => $this->getConfig('PasswordMustBeComplex', false)
 		);
 	}
 	/***** public functions might be called with web API *****/
