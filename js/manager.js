@@ -11,18 +11,24 @@ module.exports = function (oAppData) {
 
 		return {
 			start: function (ModulesManager) {
-				ModulesManager.run(
-					'SettingsWebclient',
-					'registerSettingsTabSection', 
-					[
-						function () { return require('modules/%ModuleName%/js/views/ChangeSingleMailAccountPasswordView.js'); },
-						'common',
-						'common'
-					]
-				);
+				if (Settings.ShowSingleMailChangePasswordInCommonSettings)
+				{
+					ModulesManager.run(
+						'SettingsWebclient',
+						'registerSettingsTabSection', 
+						[
+							function () { return require('modules/%ModuleName%/js/views/ChangeSingleMailAccountPasswordView.js'); },
+							'common',
+							'common'
+						]
+					);
+				}
 			},
 			getChangePasswordPopup: function () {
 				return require('modules/%ModuleName%/js/popups/ChangePasswordPopup.js');
+			},
+			isChangePasswordButtonAllowed: function (iAccountCount, oAccount) {
+				return !Settings.ShowSingleMailChangePasswordInCommonSettings || iAccountCount > 1;
 			}
 		};
 	}

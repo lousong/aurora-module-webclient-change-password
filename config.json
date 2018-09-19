@@ -10,5 +10,9 @@
     "PasswordMustBeComplex": [
 		false,
 		"bool"
+	],
+    "ShowSingleMailChangePasswordInCommonSettings": [
+		false,
+		"bool"
 	]
 }

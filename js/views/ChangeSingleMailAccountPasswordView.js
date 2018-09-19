@@ -26,11 +26,25 @@ CChangeSingleMailAccountPasswordView.prototype.ViewTemplate = '%ModuleName%_Chan
 
 CChangeSingleMailAccountPasswordView.prototype.init = function ()
 {
-	var oAccountList = ModulesManager.run('MailWebclient', 'getAccountList', []);
-	if (oAccountList && _.isFunction(oAccountList.collection) && oAccountList.collection().length === 1 && !Settings.MailAllowAddAccounts)
+	var
+		oAccountList = ModulesManager.run('MailWebclient', 'getAccountList', []),
+		fCheckAccountList = function () {
+			if (oAccountList.collection().length === 1)
+			{
+				this.oSingleMailAccount = oAccountList.collection()[0];
+				this.showChangePasswordButton(true);
+			}
+			else
+			{
+				this.oSingleMailAccount = null;
+				this.showChangePasswordButton(false);
+			}
+		}.bind(this)
+	;
+	if (oAccountList && _.isFunction(oAccountList.collection))
 	{
-		this.oSingleMailAccount = oAccountList.collection()[0];
-		this.showChangePasswordButton(true);
+		fCheckAccountList();
+		oAccountList.collection.subscribe(fCheckAccountList);
 	}
 };
 

@@ -28,7 +28,8 @@ class Module extends \Aurora\System\Module\AbstractModule
 		
 		return array(
 			'PasswordMinLength' => $this->getConfig('PasswordMinLength', 0),
-			'PasswordMustBeComplex' => $this->getConfig('PasswordMustBeComplex', false)
+			'PasswordMustBeComplex' => $this->getConfig('PasswordMustBeComplex', false),
+			'ShowSingleMailChangePasswordInCommonSettings' => $this->getConfig('ShowSingleMailChangePasswordInCommonSettings', false),
 		);
 	}
 	/***** public functions might be called with web API *****/
