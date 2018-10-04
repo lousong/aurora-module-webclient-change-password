@@ -7,9 +7,6 @@ var
 ;
 
 module.exports = {
-	PasswordMinLength: 0,
-	PasswordMustBeComplex: false,
-	
 	// If true and there is only one mail account show change password button in common settings, not in mail account properties screen.
 	ShowSingleMailChangePasswordInCommonSettings: false,
 	
@@ -24,8 +21,6 @@ module.exports = {
 		
 		if (!_.isEmpty(oAppDataSection))
 		{
-			this.PasswordMinLength = Types.pNonNegativeInt(oAppDataSection.PasswordMinLength, this.PasswordMinLength);
-			this.PasswordMustBeComplex = Types.pBool(oAppDataSection.PasswordMustBeComplex, this.PasswordMustBeComplex);
 			this.ShowSingleMailChangePasswordInCommonSettings = Types.pBool(oAppDataSection.ShowSingleMailChangePasswordInCommonSettings, this.ShowSingleMailChangePasswordInCommonSettings);
 		}
 	}

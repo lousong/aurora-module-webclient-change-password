@@ -3,14 +3,6 @@
 		false,
 		"bool"
 	],
-    "PasswordMinLength": [
-		0,
-		"int"
-	],
-    "PasswordMustBeComplex": [
-		false,
-		"bool"
-	],
     "ShowSingleMailChangePasswordInCommonSettings": [
 		false,
 		"bool"
