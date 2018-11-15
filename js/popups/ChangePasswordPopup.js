@@ -6,6 +6,7 @@ var
 	ko = require('knockout'),
 	
 	TextUtils = require('%PathToCoreWebclientModule%/js/utils/Text.js'),
+	UrlUtils = require('%PathToCoreWebclientModule%/js/utils/Url.js'),
 	ValidationUtils = require('%PathToCoreWebclientModule%/js/utils/Validation.js'),
 	
 	Ajax = require('%PathToCoreWebclientModule%/js/Ajax.js'),
@@ -67,13 +68,20 @@ CChangePasswordPopup.prototype.change = function ()
 
 CChangePasswordPopup.prototype.sendChangeRequest = function ()
 {
-	var oParameters = {
-		'AccountId': this.accountId(),
-		'CurrentPassword': $.trim(this.currentPassword()),
-		'NewPassword': $.trim(this.newPassword())
-	};
-
+	var
+		oParameters = {
+			'AccountId': this.accountId(),
+			'CurrentPassword': $.trim(this.currentPassword()),
+			'NewPassword': $.trim(this.newPassword())
+		},
+		oExcept = {
+			Module: this.oParams.sModule,
+			Method: 'ChangePassword'
+		};
+	;
+	
 	Ajax.send(this.oParams.sModule, 'ChangePassword', oParameters, this.onUpdatePasswordResponse, this);
+	Ajax.abortAndStopSendRequests(oExcept);
 };
 
 /**
@@ -85,23 +93,32 @@ CChangePasswordPopup.prototype.onUpdatePasswordResponse = function (oResponse, o
 	if (oResponse.Result === false)
 	{
 		Api.showErrorByCode(oResponse, TextUtils.i18n('%MODULENAME%/ERROR_PASSWORD_NOT_SAVED'));
+		Ajax.startSendRequests();
 	}
 	else
 	{
-		if (this.hasOldPassword())
+		if (oResponse.Result && oResponse.Result.RefreshToken)
 		{
-			Screens.showReport(TextUtils.i18n('%MODULENAME%/REPORT_PASSWORD_CHANGED'));
+			$.cookie('AuthToken', oResponse.Result.RefreshToken, { expires: 30 });
+			UrlUtils.clearAndReloadLocation(true, false);
 		}
 		else
 		{
-			Screens.showReport(TextUtils.i18n('%MODULENAME%/REPORT_PASSWORD_SET'));
-		}
-		
-		this.closePopup();
-		
-		if ($.isFunction(this.oParams.fAfterPasswordChanged))
-		{
-			this.oParams.fAfterPasswordChanged();
+			if (this.hasOldPassword())
+			{
+				Screens.showReport(TextUtils.i18n('%MODULENAME%/REPORT_PASSWORD_CHANGED'));
+			}
+			else
+			{
+				Screens.showReport(TextUtils.i18n('%MODULENAME%/REPORT_PASSWORD_SET'));
+			}
+
+			this.closePopup();
+
+			if ($.isFunction(this.oParams.fAfterPasswordChanged))
+			{
+				this.oParams.fAfterPasswordChanged();
+			}
 		}
 	}
 };
