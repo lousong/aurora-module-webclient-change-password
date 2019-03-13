@@ -28,7 +28,7 @@ module.exports = function (oAppData) {
 				return require('modules/%ModuleName%/js/popups/ChangePasswordPopup.js');
 			},
 			isChangePasswordButtonAllowed: function (iAccountCount, oAccount) {
-				return !Settings.ShowSingleMailChangePasswordInCommonSettings || iAccountCount > 1;
+				return (!Settings.ShowSingleMailChangePasswordInCommonSettings || iAccountCount > 1) && !!oAccount.aExtend.AllowChangePasswordOnMailServer;
 			}
 		};
 	}
