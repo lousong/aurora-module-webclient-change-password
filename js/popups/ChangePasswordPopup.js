@@ -13,7 +13,9 @@ var
 	Api = require('%PathToCoreWebclientModule%/js/Api.js'),
 	Screens = require('%PathToCoreWebclientModule%/js/Screens.js'),
 	
-	CAbstractPopup = require('%PathToCoreWebclientModule%/js/popups/CAbstractPopup.js')
+	CAbstractPopup = require('%PathToCoreWebclientModule%/js/popups/CAbstractPopup.js'),
+
+	Settings = require('modules/%ModuleName%/js/Settings.js')
 ;
 
 /**
@@ -99,7 +101,7 @@ CChangePasswordPopup.prototype.onUpdatePasswordResponse = function (oResponse, o
 	{
 		if (oResponse.Result && oResponse.Result.RefreshToken)
 		{
-			$.cookie('AuthToken', oResponse.Result.RefreshToken, { expires: 30 });
+			$.cookie('AuthToken', oResponse.Result.RefreshToken, { expires: Settings.AuthTokenCookieExpireTime });
 			UrlUtils.clearAndReloadLocation(true, false);
 		}
 		else
