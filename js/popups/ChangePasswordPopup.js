@@ -11,6 +11,7 @@ var
 	
 	Ajax = require('%PathToCoreWebclientModule%/js/Ajax.js'),
 	Api = require('%PathToCoreWebclientModule%/js/Api.js'),
+	App = require('%PathToCoreWebclientModule%/js/App.js'),
 	Screens = require('%PathToCoreWebclientModule%/js/Screens.js'),
 	
 	Popups = require('%PathToCoreWebclientModule%/js/Popups.js'),
@@ -104,7 +105,7 @@ CChangePasswordPopup.prototype.onUpdatePasswordResponse = function (oResponse, o
 	{
 		if (oResponse.Result && oResponse.Result.RefreshToken)
 		{
-			$.cookie('AuthToken', oResponse.Result.RefreshToken, { expires: Settings.AuthTokenCookieExpireTime });
+			App.setAuthToken(oResponse.Result.RefreshToken);
 			
 			Popups.showPopup(AlertPopup, [TextUtils.i18n('%MODULENAME%/REPORT_PASSWORD_CHANGED') + ' ' + TextUtils.i18n('%MODULENAME%/REPORT_REDIRECT_TO_LOGIN'), function () {
 				UrlUtils.clearAndReloadLocation(true, false);
