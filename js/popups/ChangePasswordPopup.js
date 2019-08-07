@@ -108,7 +108,7 @@ CChangePasswordPopup.prototype.onUpdatePasswordResponse = function (oResponse, o
 			App.setAuthToken(oResponse.Result.RefreshToken);
 			
 			Popups.showPopup(AlertPopup, [TextUtils.i18n('%MODULENAME%/REPORT_PASSWORD_CHANGED') + ' ' + TextUtils.i18n('%MODULENAME%/REPORT_REDIRECT_TO_LOGIN'), function () {
-				UrlUtils.clearAndReloadLocation(true, false);
+				App.logout();
 			}]);
 		}
 		else
