@@ -1,7 +1,9 @@
 'use strict';
 
 module.exports = function (oAppData) {
-	var App = require('%PathToCoreWebclientModule%/js/App.js');
+	var
+		App = require('%PathToCoreWebclientModule%/js/App.js')
+	;
 	
 	if (App.isUserNormalOrTenant())
 	{
@@ -11,14 +13,24 @@ module.exports = function (oAppData) {
 
 		return {
 			start: function (ModulesManager) {
-				if (Settings.ShowSingleMailChangePasswordInCommonSettings)
+				if (Settings.ShowSingleMailChangePasswordInSecuritySettings && ModulesManager.isModuleEnabled('SecuritySettingsWebclient'))
+				{
+					ModulesManager.run(
+						'SecuritySettingsWebclient',
+						'registerSecuritySettingsSection', 
+						[
+							function () { return require('modules/%ModuleName%/js/views/ChangeDefaultMailAccountPasswordView.js'); },
+							'%ModuleName%'
+						]
+					);
+				}
+				else if (Settings.ShowSingleMailChangePasswordInCommonSettings)
 				{
 					ModulesManager.run(
 						'SettingsWebclient',
 						'registerSettingsTabSection', 
 						[
-							function () { return require('modules/%ModuleName%/js/views/ChangeSingleMailAccountPasswordView.js'); },
-							'common',
+							function () { return require('modules/%ModuleName%/js/views/ChangeDefaultMailAccountPasswordView.js'); },
 							'common'
 						]
 					);
@@ -28,7 +40,9 @@ module.exports = function (oAppData) {
 				return require('modules/%ModuleName%/js/popups/ChangePasswordPopup.js');
 			},
 			isChangePasswordButtonAllowed: function (iAccountCount, oAccount) {
-				return (!Settings.ShowSingleMailChangePasswordInCommonSettings || iAccountCount > 1) && !!oAccount.aExtend.AllowChangePasswordOnMailServer;
+				return !Settings.ShowSingleMailChangePasswordInCommonSettings
+						&& !Settings.ShowSingleMailChangePasswordInSecuritySettings
+						&& !!oAccount.aExtend.AllowChangePasswordOnMailServer;
 			}
 		};
 	}

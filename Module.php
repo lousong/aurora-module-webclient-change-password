@@ -30,6 +30,7 @@ class Module extends \Aurora\System\Module\AbstractWebclientModule
 		
 		return array(
 			'ShowSingleMailChangePasswordInCommonSettings' => $this->getConfig('ShowSingleMailChangePasswordInCommonSettings', false),
+			'ShowSingleMailChangePasswordInSecuritySettings' => $this->getConfig('ShowSingleMailChangePasswordInSecuritySettings', false),
 		);
 	}
 	/***** public functions might be called with web API *****/
