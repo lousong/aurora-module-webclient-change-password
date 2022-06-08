@@ -1,26 +1,26 @@
 {
-  "Disabled": [
-    false,
-    "bool"
-  ],
-  "Disabled_Description": [
-    "",
-    "string"
-  ],
-  "ShowSingleMailChangePasswordInCommonSettings": [
-    false,
-    "bool"
-  ],
-  "ShowSingleMailChangePasswordInCommonSettings_Description": [
-    "",
-    "string"
-  ],
-  "ShowSingleMailChangePasswordInSecuritySettings": [
-    false,
-    "bool"
-  ],
-  "ShowSingleMailChangePasswordInSecuritySettings_Description": [
-    "",
-    "string"
-  ]
+	"Disabled": [
+		false,
+		"bool"
+	],
+	"Disabled_Description": [
+		"",
+		"string"
+	],
+	"ShowSingleMailChangePasswordInCommonSettings": [
+		false,
+		"bool"
+	],
+	"ShowSingleMailChangePasswordInCommonSettings_Description": [
+		"",
+		"string"
+	],
+	"ShowSingleMailChangePasswordInSecuritySettings": [
+		false,
+		"bool"
+	],
+	"ShowSingleMailChangePasswordInSecuritySettings_Description": [
+		"",
+		"string"
+	]
 }
