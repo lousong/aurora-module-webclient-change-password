@@ -4,7 +4,7 @@
 		"bool"
 	],
 	"Disabled_Description": [
-		"",
+		"Setting to true disables the module",
 		"string"
 	],
 	"ShowSingleMailChangePasswordInCommonSettings": [
@@ -12,7 +12,7 @@
 		"bool"
 	],
 	"ShowSingleMailChangePasswordInCommonSettings_Description": [
-		"",
+		"If set to true, Change Password button is displayed in Common settings rather than under Email Accounts section",
 		"string"
 	],
 	"ShowSingleMailChangePasswordInSecuritySettings": [
@@ -20,7 +20,7 @@
 		"bool"
 	],
 	"ShowSingleMailChangePasswordInSecuritySettings_Description": [
-		"",
+		"If set to true, Change Password button is displayed in Security settings, SecuritySettingsWebclient module",
 		"string"
 	]
 }
